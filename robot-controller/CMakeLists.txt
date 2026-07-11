@@ -1,0 +1,45 @@
+cmake_minimum_required(VERSION 3.24)
+project(AutoSurgViewRobotController LANGUAGES C CXX)
+
+if(NOT WIN32)
+  message(FATAL_ERROR "The controller uses Windows APIs and vendor SDKs; build on 64-bit Windows.")
+endif()
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(AUTOSURGVIEW_VENDOR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor" CACHE PATH "Vendor SDK root")
+
+set(required_private_headers ECANVci.h yanHuaDriver.h rrt.h rrt_star.h rrt_connect.h rrt_connect_star.h Q_rrt_star.h D_rrt.h D_rrt_star.h D_rrt_connect.h D_rrt_connect_star.h MP_rrt.h MP_rrt_star.h MP_rrt_connect.h MP_rrt_connect_star.h)
+foreach(header IN LISTS required_private_headers)
+  if(NOT EXISTS "${AUTOSURGVIEW_VENDOR_DIR}/include/${header}")
+    list(APPEND missing_private_headers "${header}")
+  endif()
+endforeach()
+if(missing_private_headers)
+  list(JOIN missing_private_headers ", " missing)
+  message(FATAL_ERROR "Missing private headers in vendor/include: ${missing}. See docs/DEPENDENCIES.md.")
+endif()
+
+find_package(OpenCV REQUIRED)
+find_package(Eigen3 CONFIG REQUIRED)
+find_package(Boost REQUIRED COMPONENTS thread)
+find_package(PCL CONFIG REQUIRED)
+find_package(realsense2 CONFIG REQUIRED)
+find_package(onnxruntime CONFIG REQUIRED)
+find_package(Torch CONFIG REQUIRED)
+find_package(orocos_kdl CONFIG REQUIRED)
+find_package(jsoncpp CONFIG REQUIRED)
+find_package(OpenMP REQUIRED)
+
+file(GLOB controller_sources CONFIGURE_DEPENDS "*.cpp" "*.c")
+add_executable(autosurgview-controller ${controller_sources})
+target_include_directories(autosurgview-controller PRIVATE . "${AUTOSURGVIEW_VENDOR_DIR}/include" ${PCL_INCLUDE_DIRS})
+target_compile_definitions(autosurgview-controller PRIVATE NOMINMAX _CRT_SECURE_NO_WARNINGS)
+target_link_directories(autosurgview-controller PRIVATE "${AUTOSURGVIEW_VENDOR_DIR}/lib")
+target_link_libraries(autosurgview-controller PRIVATE ${OpenCV_LIBS} Eigen3::Eigen Boost::thread ${PCL_LIBRARIES} realsense2::realsense2 onnxruntime::onnxruntime ${TORCH_LIBRARIES} orocos-kdl jsoncpp_lib OpenMP::OpenMP_CXX winmm ws2_32)
+set(AUTOSURGVIEW_VENDOR_LIBRARIES "" CACHE STRING "Semicolon-separated vendor import libraries")
+target_link_libraries(autosurgview-controller PRIVATE ${AUTOSURGVIEW_VENDOR_LIBRARIES})
+
+add_custom_command(TARGET autosurgview-controller POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:autosurgview-controller>/models"
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/models/ppo_AnzhenRobotContinue_new9.onnx" "$<TARGET_FILE_DIR:autosurgview-controller>/models/ppo_AnzhenRobotContinue_new9.onnx")
+

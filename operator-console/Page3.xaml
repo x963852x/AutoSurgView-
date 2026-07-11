@@ -1,0 +1,154 @@
+﻿<Page x:Class="手术机器人上位机程序.Page3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:手术机器人上位机程序"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"  
+        Title="术中视频采集系统">
+    <Grid x:Name="MainGrid" Width="1920" Height="1080">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="术中协同及质控机器人" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="11" FontSize="80"/>
+        <TextBlock Text="Intraoperative Collaboration and Quality Control Robot" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="11" FontSize="60"/>
+        <Button x:Name="System_unflod"   Grid.Column="1" Grid.Row="2" Height="360" Width="1100" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="60" FontWeight="Bold" Click="System_unflod_Click">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="机械臂系统展开" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="Deploying the Robotics Arm System" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50"/>
+            </Grid>
+        </Button>
+        <Button x:Name="System_enflod"  Grid.Column="4" Grid.Row="2" Height="360" Width="1100" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="60" FontWeight="Bold" Click="System_enflod_Click">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="机械臂系统回收" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="150,0"/>
+                <TextBlock Text="Retracting the Robotics Arm System" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50"/>
+            </Grid>
+        </Button>
+        <materialDesign:Card  Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="4" Grid.RowSpan="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="Debug"  Background="	Thistle" Grid.Column="1" Grid.Row="0" Height="130" Width="700" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="60" FontWeight="Bold" Click="Debug_Click">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="机械臂调节设置" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="The Robotics Arm Turn Setting" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="Focus"  Background="	Thistle" Grid.Column="1" Grid.Row="2" Height="130" Width="700" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="60" FontWeight="Bold" Click="Focus_Click">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="自动避障设定" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Automatic Obstacle Avoidance Setting" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="Camera"  Background="	Thistle" Grid.Column="3" Grid.Row="2" Height="130" Width="700" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="60" FontWeight="Bold" Click="Camera_Click">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="高清术野摄像机设置" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="HD Surgical Video Camera Setting" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="PTZ_Camera"  Background="	Thistle" Grid.Column="3" Grid.Row="0" Height="130" Width="700" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="60" FontWeight="Bold" Click="PTZ_Camera_Click">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="全局相机设置" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Monitoring Camera Setting" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="Record_tool"  Background="	Thistle" Grid.Column="1" Grid.Row="4" Height="130" Width="700" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="60" FontWeight="Bold" Click="Record_Tool_Click">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="手术录制设置" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Surgical Recording Setting" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+                    </Grid>
+                </Button>
+                <Button x:Name="touch_control"  Background="	Thistle" Grid.Column="3" Grid.Row="4" Height="130" Width="700" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="60" FontWeight="Bold" Click="Touch_Control_Click">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="机械臂末端控制" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Arm End Control" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+                    </Grid>
+                </Button>
+            </Grid>
+        </materialDesign:Card>
+        <!--<TextBlock x:Name="DebugText" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="7"  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="60" />-->
+
+        <ToolBarTray Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="8" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ToolBar>
+                <StackPanel>
+                    <Image Name="Image_Source" Height="100" Width="100"/>
+                </StackPanel>
+                <TextBlock Name="DebugText" Block.TextAlignment="Center" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50"/>
+            </ToolBar>
+        </ToolBarTray>
+
+    </Grid>
+</Page>

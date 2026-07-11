@@ -1,0 +1,125 @@
+﻿<Page x:Class="手术机器人上位机程序.Page9"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+      xmlns:local="clr-namespace:手术机器人上位机程序"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:vlc="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="黑体"  
+      Title="机器人末端控制" Height="980" Width="1920">
+
+    <Grid x:Name="MainGrid">
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <WindowsFormsHost Panel.ZIndex="1" Width="1408" Height="768" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,10,10,10" VerticalAlignment="Center" >
+                <wf:PictureBox x:Name="CameraPlayer" BackColor="black" Dock="Bottom"/>
+            </WindowsFormsHost>
+            <!--<Popup AllowsTransparency="True" IsOpen="True" HorizontalOffset="00" VerticalOffset="-490" Width="1680" Height="500">-->
+            <Popup AllowsTransparency="True" IsOpen="True" HorizontalOffset="0" VerticalOffset="-940">
+                <!--<WindowsFormsHost Panel.ZIndex="2" Width="500" Height="500" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,10,10,10" VerticalAlignment="Center">-->
+                <!--<ElementHost>-->
+                <Grid Width="1920" Height="980" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,10,10,10" VerticalAlignment="Center">
+                    <Button x:Name="touch" Height="60" Width="60" Content="" PreviewMouseDown="touch_Down" PreviewMouseMove="touch_Move" PreviewMouseUp="touch_Up" Opacity="0.6" Background="White" FontSize="40" RenderTransformOrigin="4.567,4.4" Margin="930,460,930,460"/>
+                    <Border Name="box_view" BorderBrush="Blue" BorderThickness="5" Margin="710,240" Width="500" Height="300">
+                        <Grid>
+                            <!--<TextBlock x:Name="box" Width="500" Height="500"/>-->
+                        </Grid>
+                    </Border>
+                </Grid>
+                <!--</ElementHost>-->
+                <!--</WindowsFormsHost>-->
+            </Popup>
+
+            <!--<Popup AllowsTransparency="True" IsOpen="True" HorizontalOffset="0" VerticalOffset="-940">
+                <Border  BorderBrush="Blue" BorderThickness="5" Margin="710,240" Width="500" Height="500">
+                    <Grid>
+                        <TextBlock x:Name="box_view" Width="500" Height="500"/>
+                    </Grid>
+                </Border>
+            </Popup>-->
+            <!--<Popup AllowsTransparency="True" IsOpen="True" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,10,10,10" VerticalAlignment="Center">
+                <StackPanel>
+                    <Canvas>
+                        <Button x:Name="touch" Content="1111" MouseLeftButtonDown="touch_Down" MouseMove="touch_Move" MouseLeftButtonUp="touch_Up" Width="80" Height="80" Opacity="0.6" Background="#FF8C64D4" FontSize="40" />
+                    </Canvas>
+                </StackPanel>
+            </Popup>-->
+
+
+            <TextBlock Text="机械臂末端控制" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" FontSize="80"/>
+            <Button x:Name="read_video" Click="read_video_Click" Content="视频读取" Grid.Row="4" Grid.RowSpan="1" Grid.Column="1" Height="80" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+            <Button x:Name="return" Click="return_Click" Content="返回主界面" Grid.Row="4" Grid.RowSpan="1" Grid.Column="2" Height="80" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+            <Button x:Name="view_button" Click="view_Click" Content="显示视频&#x000A;拖动按钮" Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Height="120" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" Margin="0,443,740,227"/>
+            <Button x:Name="auto_position" Click="auto_position_Click" Content="手术区域&#x000A;自动定位" Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Height="120" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" Margin="0,234,740,436"/>
+            <Button x:Name="auto_fouus" Click="auto_focus_Click" Content="开启避障&#x000A;锁定拍摄" Block.TextAlignment="Center" Grid.Column="1" Height="120" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" Margin="0,26,740,644" Grid.Row="2"/>
+            <Button x:Name="inview_button" Click="inview_Click" Content="隐藏视频&#x000A;拖动按钮" Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Height="120" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" Margin="0,653,740,17"/>
+
+            <TextBlock Text="聚焦控制" Block.TextAlignment="Center" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="52" Margin="720,0,0,600"/>
+            <Button x:Name="FocusNear" MouseLeftButtonDown="FocusNear_MouseLeftButtonDown"  MouseLeftButtonUp="FocusNear_MouseLeftButtonUp" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Height="80" Width="80" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5" Margin="600,0,0,400">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center" Height="67" Width="76"/>
+            </Button>
+            <Button x:Name="FocusFar" MouseLeftButtonDown="FocusFar_MouseLeftButtonDown"  MouseLeftButtonUp="FocusFar_MouseLeftButtonUp" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Height="80" Width="80" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5" Margin="840,0,0,400">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="67" Width="76"/>
+            </Button>
+            <TextBlock Text="曝光控制" Block.TextAlignment="Center" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="52"  Margin="720,0,0,100"/>
+            <Button x:Name="IrisDown" MouseLeftButtonDown="IrisDown_MouseLeftButtonDown" MouseLeftButtonUp="IrisDown_MouseLeftButtonUp" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Height="80" Width="80" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5" Margin="600,0,0,-100">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center" Height="67" Width="76"/>
+            </Button>
+            <Button x:Name="IrisUp" MouseLeftButtonDown="IrisUp_MouseLeftButtonDown" MouseLeftButtonUp="IrisUp_MouseLeftButtonUp" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Height="80" Width="80" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5" Margin="840,0,0,-100">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="67" Width="76"/>
+            </Button>
+            <Button x:Name="visualservo" Content="视觉伺服&#x000A;自动对准" Block.TextAlignment="Center" Click="visualservo_Click"  HorizontalAlignment="Center" Height="120" Width="220" FontSize="40"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Center" Margin="715,0,0,-400"/>
+            <Button x:Name="figure_save" Content="图像保存" Block.TextAlignment="Center" Click="figure_save_Click"  HorizontalAlignment="Center" Height="80" Width="220" FontSize="40"  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" Margin="722,681,8,49" Grid.RowSpan="3"/>
+        </Grid>
+    </Grid>
+
+</Page>

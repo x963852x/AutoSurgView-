@@ -1,0 +1,231 @@
+﻿<Page x:Class="手术机器人上位机程序.Page5"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:手术机器人上位机程序"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"  
+        Title="摄像头控制">
+    <Grid x:Name="MainGrid" Height="880" Width="1920">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="800"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="高清术野摄像机设置" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="60"/>
+
+        <materialDesign:Card Width="780" Height="640" Grid.Column="1"  Grid.Row="1">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="云台控制 &#x000A;PTZ Turning" Block.TextAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="52"/>
+                <TextBlock Text="倾斜调整 &#x000A;Left-Right Turning" Block.TextAlignment="Center" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32"/>
+                <Button x:Name="yaw_Left" MouseLeftButtonDown="yaw_Left_MouseLeftButtonDown" MouseLeftButtonUp="yaw_Left_MouseLeftButtonUp" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5" Margin="68,12,71,12">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180.00"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Play" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+                <Button x:Name="yaw_Right" MouseLeftButtonDown="yaw_Right_MouseLeftButtonDown" MouseLeftButtonUp="yaw_Right_MouseLeftButtonUp" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Play" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+
+                <TextBlock Text="俯仰调整 &#x000A;Front-Back Turning" Block.TextAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32"/>
+                <Button x:Name="pitch_Left" MouseLeftButtonDown="pitch_Left_MouseLeftButtonDown" MouseLeftButtonUp="pitch_Left_MouseLeftButtonUp" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90.00"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Play" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+                <Button x:Name="pitch_Right" MouseLeftButtonDown="pitch_Right_MouseLeftButtonDown" MouseLeftButtonUp="pitch_Right_MouseLeftButtonUp" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <RotateTransform Angle="-90.00"/>
+                            <SkewTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Play" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+
+                <TextBlock Text="自转调整 &#x000A;Roation Turning" Block.TextAlignment="Center" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32"/>
+                <Button x:Name="roll_Left" MouseLeftButtonDown="roll_Left_MouseLeftButtonDown" MouseLeftButtonUp="roll_Left_MouseLeftButtonUp" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform CenterX="0" CenterY="0" AngleX="45" AngleY="0"/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Play" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+                <Button x:Name="roll_Right" MouseLeftButtonDown="roll_Right_MouseLeftButtonDown" MouseLeftButtonUp="roll_Right_MouseLeftButtonUp" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="3" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <RotateTransform Angle="180.00"/>
+                            <SkewTransform CenterX="0" CenterY="0" AngleX="-45" AngleY="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Play" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+            </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:Card Width="500" Height="640" Grid.Column="3"  Grid.Row="1">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="视野/聚焦控制 &#x000A;Zoom/Focus Turning" Block.TextAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="52"/>
+                <TextBlock Text="视野 &#x000A;Zoom" Block.TextAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="42"/>
+                <TextBlock Text="聚焦 &#x000A;Focus" Block.TextAlignment="Center" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="42"/>
+                <Button x:Name="ZoomOut" MouseLeftButtonDown="ZoomOut_MouseLeftButtonDown"  MouseLeftButtonUp="ZoomOut_MouseLeftButtonUp" Grid.Column="0" Grid.Row="1" Height="100" Grid.RowSpan="2" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+                <Button x:Name="ZoomIn" MouseLeftButtonDown="ZoomIn_MouseLeftButtonDown"  MouseLeftButtonUp="ZoomIn_MouseLeftButtonUp" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+                <Button x:Name="FocusNear" MouseLeftButtonDown="FocusNear_MouseLeftButtonDown"  MouseLeftButtonUp="FocusNear_MouseLeftButtonUp" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+                <Button x:Name="FocusFar" MouseLeftButtonDown="FocusFar_MouseLeftButtonDown"  MouseLeftButtonUp="FocusFar_MouseLeftButtonUp" Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+            </Grid>
+
+        </materialDesign:Card>
+
+        <materialDesign:Card Width="500" Height="640" Grid.Column="5"  Grid.Row="1">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="曝光控制 &#x000A;Exposure Turning" Block.TextAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="52"/>
+                <TextBlock Text="曝光 &#x000A;Exposure" Block.TextAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="42"/>
+                <Button x:Name="IrisDown" MouseLeftButtonDown="IrisDown_MouseLeftButtonDown" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+                <Button x:Name="IrisUp" MouseLeftButtonDown="IrisUp_MouseLeftButtonDown" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Height="100" Width="100" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" Height="67" Width="76"/>
+                </Button>
+                <Button x:Name="light" Content="开启无影灯模式 &#x000A;Enable Shadow Mode" Block.TextAlignment="Center" FontWeight="Bold" Click="light_Click"  HorizontalAlignment="Center" Height="130" FontSize="42"  Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2" VerticalAlignment="Center"/>
+
+            </Grid>
+
+        </materialDesign:Card>
+
+        <Button x:Name="return" Content="返回主界面 &#x000A;Return to Main Page" Block.TextAlignment="Center" FontWeight="Bold" Click="return_Click" HorizontalAlignment="Center" Width="520"  Height="130" FontSize="48"  Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="2" VerticalAlignment="Center"/>
+    </Grid>
+</Page>

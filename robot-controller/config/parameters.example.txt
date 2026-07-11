@@ -1,0 +1,5 @@
+# Copy to parameters.txt and replace values for the test rig.
+# Whitespace-separated key/value pairs; comments are ignored.
+rs_fun 1
+lidar_fun 1
+

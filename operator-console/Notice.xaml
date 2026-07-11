@@ -1,0 +1,56 @@
+﻿<Window x:Class="手术机器人上位机程序.Notice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:手术机器人上位机程序"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        Title="提示" Height="450" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="请确认展开区域内无障碍" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3"  FontSize="80"/>
+        <TextBlock Text="Please Confirm Robotics Arm Deploying Area is Clear" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="3"  FontSize="36"/>
+        <Button x:Name="OK" Grid.Row="3" Height="140" Width="400"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="60" FontWeight="Bold" Click="OK_Click" Cursor="Hand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="确认" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="Confirm" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+            </Grid>
+        </Button>
+
+        <TextBlock Text="展开区域为机械臂布置目标区域，请考虑立柱最高升降高度(2米) &#x000A;和臂展最长距离(1.8米)范围内的无影灯和医疗器械避免机械臂展开 &#x000A;过程重发生意外碰撞。" HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center"  FontSize="30"/>
+
+        <Button x:Name="cancel" Grid.Row="3" Height="140" Width="400" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="60" FontWeight="Bold" Click="cancel_Click" Cursor="Hand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="取消" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="Cancel" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+            </Grid>
+        </Button>
+    </Grid>
+</Window>

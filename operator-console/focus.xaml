@@ -1,0 +1,69 @@
+﻿<Window x:Class="手术机器人上位机程序.focus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:手术机器人上位机程序"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        Title="focus" Height="450" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="自动避障设定 &#x000A;Automatic Obstacle Avoidence Setting" Block.TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" FontSize="48"/>
+        <TextBlock Text="退出界面请先解除目标锁定状态" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" FontSize="30"/>
+
+        <materialDesign:Card Grid.Row="3" Grid.Column="1">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="set_focus_state" Click="set_focus_state_Click" Content="激活目标锁定" Block.TextAlignment="Center" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Height="80" Width="310"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
+                <Button x:Name="set_focus_point" Click="set_focus_point_Click" Content="设置目标点 &#x000A;Setting Height" Block.TextAlignment="Center"  Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="1" Height="80" Width="280"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
+                <Button x:Name="return_button" Click="return_Click" Content="退出界面 &#x000A;Exit" Block.TextAlignment="Center"  Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="3" Height="80" Width="280"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
+
+                <TextBlock Text="设置目标高度 &#x000A;Aim Height Setting(cm)" Block.TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" FontSize="20"/>
+                <TextBox x:Name="HeightBox"  Grid.Column="3" Grid.Row="3"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="60" Width="200" MouseEnter="HeightBox_MouseEnter" />
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
