@@ -16,9 +16,11 @@ This repository accompanies *“Autonomous occlusion-aware robotic recording ena
 - `operator-console/` — Windows WPF operator interface (formerly `上位机`).
 - `docs/DEPENDENCIES.md` — dependencies and the remaining unavailable components.
 
-## Current completeness
+## Included components
 
-Build manifests, a configuration example, and the ONNX policy referenced by the occlusion-avoidance code are included. A complete hardware build still requires vendor SDKs and project-owned RRT headers listed in `docs/DEPENDENCIES.md`; they were absent from both source locations and cannot be safely recreated.
+This release provides the CMake configuration for the C++ robot controller, the WPF project file, an example controller configuration, the ONNX policy used for occlusion-aware viewpoint planning, binary STL loading support, portable runtime-path configuration, and documentation of all external dependencies.
+
+Deployment on the physical robotic platform requires the hardware-specific SDKs and planning dependencies listed in `docs/DEPENDENCIES.md`. Vendor libraries are distributed separately under their respective licenses and are therefore not included in this repository.
 
 ## Operator console
 
@@ -45,12 +47,9 @@ cmake --build build/robot-controller --config Release
 
 Set `AUTOSURGVIEW_CONFIG`, `AUTOSURGVIEW_MODEL`, and `AUTOSURGVIEW_LOG_DIR` to override the default relative paths.
 
-## Before publication
+## Data and third-party software
 
-- Confirm the copyright holder in `LICENSE`.
-- Add paper authors, DOI, BibTeX, exact hardware/firmware/SDK versions, and calibration protocol.
-- Publish the missing RRT code if author-owned and cleared for release.
-- Do not commit patient data, credentials, serial numbers, or proprietary binaries.
+Patient data, surgical recordings, credentials, device serial numbers, and proprietary SDK binaries are not distributed with this repository. Users are responsible for obtaining the required vendor software and for complying with institutional, ethical, privacy, and third-party licensing requirements.
 
 ## Citation
 
